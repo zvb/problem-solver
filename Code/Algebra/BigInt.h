@@ -16,7 +16,7 @@ struct BigInt {
             L /= base;
         }
     }
-    BigInt operator+(const BigInt o) {
+    BigInt operator+(const BigInt& o) {
         BigInt res;
         long long cur = 0 , car = 0;
         for (int i = 0 ; i < max(a.size(), o.a.size()) || car > 0 ; i ++) {
@@ -26,7 +26,7 @@ struct BigInt {
         }
         return res;
     }
-    BigInt operator*(const BigInt o) {
+    BigInt operator*(const BigInt& o) {
         BigInt res; res.a.resize(a.size() + o.a.size() + 1);
         for (int i = 0 ; i < a.size() ; i ++) {
             long long car = 0;
