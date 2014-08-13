@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 using namespace std;
-
+//==================BEGIN=====================
 struct SegTree {
     int t_size, *t;
     SegTree() {}
@@ -47,6 +47,7 @@ struct SegTree {
             t[i] = min(t[2 * i], t[2 * i + 1]);
     }
 };
+//==================END=====================
 int a[100100];
 int main() {
     freopen("stupid_rmq.in", "r", stdin);

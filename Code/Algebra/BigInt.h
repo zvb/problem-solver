@@ -1,3 +1,8 @@
+/*
+ * Last reviewed: 08/13/2014
+ * BigInteger for C++
+ * Author: zvb
+ */
 //==================BEGIN=====================
 #include <vector>
 #include <algorithm>

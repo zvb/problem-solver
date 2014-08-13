@@ -1,5 +1,5 @@
 /*
- * Author: nkanapin@gmail.com
+ * Author: zvb
  * Last reviewed: 07/12/2014
  * Description: Segment tree with following operations:
  * +Sum on the interval [l, r]
