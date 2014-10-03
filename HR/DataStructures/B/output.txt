@@ -1,0 +1,13 @@
+ok
+ok
+ok
+5
+3
+5
+2
+ok
+7
+ok
+error
+0
+bye
