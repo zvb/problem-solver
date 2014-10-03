@@ -5,30 +5,20 @@
 
 using namespace std;
 
-const int p = (int)1e9 + 9;
+const int p = (int)2e9 + 9;
 //const int p = 3;
 const int N = (int)2e5 + 100;
 
-int n, w, a[N], b[N], d[N];
+int n, w, a[N], b[N], d[N], l[N];
 
-long long x = 0;
-long long hv[N];
-long long cv[N];
-long long pp[N];
+int z[N*2], s[2*N];
 
 int main() {
     scanf("%d%d", &n, &w);
     for (int i = 0 ; i < n ; i ++) {
         scanf("%d", &a[i]);
         if (i) {
-            d[i] = a[i] - a[i-1];
-            pp[i] = pp[i-1] * p;
-            hv[i] = pp[i] * d[i];
-            cv[i] = cv[i-1] + hv[i];
-            //cout << cv[i] << ' ' ;
-        } else {
-            pp[0] = 1;
-            
+            d[i - 1] = a[i] - a[i-1];
         }
     }
     if (w == 1) {
@@ -39,22 +29,41 @@ int main() {
     for (int i = 0 ; i < w; i ++) {
         scanf("%d", &b[i]);
         if (i) {
-            x += pp[i-1] * (b[i] - b[i-1]);
+            l[i-1] =  b[i] - b[i-1];
         }
     }
     //cout << "x = " << x << endl;
-    int m = n - 1;
-    int ans = 0;
-    for (int i = 1 ; i <= m ; i ++) {
-        if (w + i - 1 <= n) {
-            long long target = cv[w-1+i-1] - cv[i-1];
-            //cout << "target = " << target << endl;
-            //cout << "orig = " << x * pp[i] << endl;
-            if (x * pp[i] == target)
-                ans ++;
-        }
+    int len = 0;
+    for (int i = 0 ; i + 1 < w ; i ++, len ++)
+        s[len] = l[i];
+    
+    s[len ++] = p;
+    
+    for (int i = 0 ; i + 1 < n ; i ++, len ++)
+        s[len] = d[i];
+
+
+    z[0] = 0;
+    /*
+    for (int i = 0 ; i < len ; i ++)
+        cout << s[i] << ' ' ; cout << endl;
+    */
+    for (int i = 1 ; i < len ; i ++) {
+        int j = z[i-1];
+        while (j > 0 && s[j] != s[i])
+            j = z[j - 1];
+        if (s[j] == s[i])
+            j ++;
+        z[i] = j;
+        //cout << z[i] << ' ';
     }
-    cout << ans << endl;
+    //cout << endl;
+    int ans = 0;
+    for (int i = 0 ; i < len ; i ++) {
+        if (z[i] == w - 1)
+            ans ++;
+    }
+    printf("%d\n", ans);
     
     
     
