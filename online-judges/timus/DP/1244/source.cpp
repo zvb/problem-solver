@@ -3,19 +3,23 @@
 #include <cstdio>
 #include <algorithm>
 #include <cstring>
-#include <set>
+#include <vector>
 
 using namespace std;
 
 
 
 int w[111], W, n;
-int dp[111][1111], p[111][1111];
+int dp[111][100111], p[111][100111];
 
 int main() {
     scanf("%d%d", &W, &n);
-    for (int i = 1 ; i <= n ; i++)
+    int sum = 0;
+    for (int i = 1 ; i <= n ; i++) {
         scanf("%d", &w[i]);
+        sum += w[i];
+    }
+    W = sum - W;
     dp[0][0] = 1;
     for (int i = 0 ; i < n ; i ++) {
         for (int j = W ; j >= 0 ; j --) {
@@ -32,7 +36,6 @@ int main() {
     else if (dp[n][W] != 1)
         puts("-1");
     else {
-        set<int> ans;
         memset(dp, 0, sizeof(dp));
         dp[0][0] = 1;
         for (int i = 0 ; i < n ; i ++) {
@@ -45,20 +48,21 @@ int main() {
                     }
                 }
             }
-            ans.insert(i+1);
         }
         int ii = n, jj = W;
+        vector<int> ans;
         while (ii > 0 && jj > 0) {
             if (p[ii][jj] == 0)
                 ;
             else {
-                ans.erase(ans.find(p[ii][jj]));
+                ans.push_back(p[ii][jj]);
                 jj -= w[p[ii][jj]];
             }
             ii --;
         }
-        for (set<int>::iterator it = ans.begin(); it != ans.end() ; it ++)
-            printf("%d ", *it);
+        sort(ans.begin(), ans.end());
+        for (int i = 0 ; i < ans.size() ; i ++)
+            printf("%d ", ans[i]);
         puts("");
     }
     
