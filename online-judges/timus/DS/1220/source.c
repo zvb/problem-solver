@@ -1,43 +1,35 @@
 #include <stdio.h>
 
+unsigned short h[1001]; // need one more bit // 16
 
-int s[100003];
-
-unsigned short p[100003], h[1003];
-//unsigned int pi[3126], hi[32];
-_Bool pi[100003], hi[1003];
-int ptr = 1;
+int ptr = 0; // current boundary
+unsigned int st[100001]; // for numbers 400
+unsigned short next[100001]; // next 200
 char str[5];
+int num, val;
 
 int main() {
-  //printf("%lu\n", sizeof(_Bool));
-  //printf("%lu\n", sizeof(p) + sizeof(h) + sizeof(pi) + sizeof(hi) + sizeof(s));
-  int q;
-  scanf("%d", &q);
-  int x, num, val;
-  while (q --) {
-    scanf("%s ", str);
-    if (str[1] == 'U') {
-      scanf("%d %d", &x, &num);
-      s[ptr] = num;
-      p[ptr] = h[x];
-      pi[ptr] = hi[ptr];
-
-
-      h[x] = ptr & 0xffff;
-      hi[x] = (ptr >> 16) & 1;
-      //printf("h[x], hi[x] = %d, %d\n", h[x], hi[x]);
-
-      ptr ++;
-    } else {
-      scanf("%d", &x);
-      val = h[x] | (hi[x] << 16);
-      //printf("val = %d\n", val);
-      printf("%d\n", s[val]);
-      h[x] = p[val];
-      hi[x] = pi[val];
-
+    int q;
+    scanf("%d\n", &q);
+    while (q --) {
+        scanf("%s %d", str, &num);
+        if (str[1] == 'U') { //push
+            scanf("%d\n", &val);
+            st[++ptr] = val;
+            next[ptr] = h[num];
+            if ( (st[num] >> 30) & 1 ) { // h^ bit % 17 == 1
+                st[ptr] |= 1 << 31; // next[ptr]&31 = 1
+            } else {
+                if ( (st[ptr] >> 31) )
+                    st[ptr] ^= 1 << 31;
+            }
+            h[num] = ptr & 0xffff;
+            if ((ptr >> 16) & 1)
+            st[num]
+        } else {
+            printf("%d\n", st[h[num]]);
+            h[num] = next[h[num]];
+        }
     }
-  }
-  return 0;
+    return 0;
 }
