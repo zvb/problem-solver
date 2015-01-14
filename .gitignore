@@ -1,5 +1,9 @@
-*.class
-.DS_Store
-*.exe
-*.out
-
+# Ignore everything
+*
+# except
+!*.cpp 
+!*.sh #bash script files
+!*.bat #windows script files
+!*.java
+!*.md
+!*.pdf
