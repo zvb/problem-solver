@@ -1,7 +1,8 @@
 # Ignore everything
 *
 # except
-!*.cpp 
+!*.cpp
+!*.c 
 !*.sh #bash script files
 !*.bat #windows script files
 !*.java
