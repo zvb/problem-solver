@@ -1,0 +1,12 @@
+Problem E. GCD vs LCM
+a = 1
+Inclusion-Exclusion
+Ans: Sum i * Sum j  = (n + 1 | 2) (m + 1 | 2) - 4 * (n/2+1 | 2) * (m/2+1 | 2)
+O(sqrt(N))
+
+a > 1
+
+
+
+Problem F. Saddle Point
+
