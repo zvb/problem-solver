@@ -3,3 +3,6 @@
 *.DS_Store
 *.out
 
+# Intellij idea files
+.idea
+*.iml
