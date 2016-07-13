@@ -1,11 +1,7 @@
 # Ignore everything
 *
-# except
-!*.cpp
-!*.c 
-!*.sh #bash script files
-!*.bat #windows script files
-!*.java
-!*.md
-!*.pdf
-!*.txt
+# except files with extension
+!*.*
+
+#
+**.DS_Store
