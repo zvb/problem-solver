@@ -1,7 +1,5 @@
-# Ignore everything
-*
-# except files with extension
-!*.*
+# Ignore executables
+*.class
+*.DS_Store
+*.out
 
-#
-**.DS_Store
